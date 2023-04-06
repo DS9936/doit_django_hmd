@@ -4,6 +4,21 @@ from django.contrib.auth.models import User
 import os
 
 # Create your models here.
+
+#카테고리 추가
+class Category(models.Model):
+    name = models.CharField(max_length=50, unique=True)
+    slug = models.SlugField(max_length=200, unique=True, allow_unicode = True)
+
+    #카테고리 추가
+    def __str__(self):
+        return self.name
+    
+    #카테고리(s)의 이름 지정
+    class Meta:
+        verbose_name_plural = 'Categories'
+
+
 class Post(models.Model):
     title = models.CharField(max_length=30)
     # 요약문 필드
@@ -18,6 +33,8 @@ class Post(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     # author 필드
     author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
+    # 카테고리 필드
+    category = models.ForeignKey(Category, null=True, blank=True, on_delete=models.SET_NULL)
 
 
     def __str__(self):
@@ -32,3 +49,4 @@ class Post(models.Model):
     
     def get_file_ext(self):
         return self.get_file_name().split('.')[-1]
+    
