@@ -22,8 +22,7 @@ var/
 wheels/
 pip-wheel-metadata/
 share/python-wheels/
-*.egg-info/
-.installed.cfg
+*.eggnstalled.cfg
 *.egg
 MANIFEST
 
@@ -130,3 +129,8 @@ dmypy.json
 
 # add mine
 doit_venv/
+
+# Pycham
+.idea/
+migrations/
+_media/

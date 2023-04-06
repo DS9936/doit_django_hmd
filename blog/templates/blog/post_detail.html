@@ -33,7 +33,7 @@
                     <p>{{ post.created_at }}</p>
                     <hr />
                     <!-- Preview image-->
-                    <img class="img-fluid rounded" src="https://picsum.photos/id/{{ post.id }}/900/300/" alt="..." />
+                    <img class="img-fluid rounded" src="{{ post.head_image.url }}" alt="" />
                     <hr />
                     <!-- Post content-->
                     
