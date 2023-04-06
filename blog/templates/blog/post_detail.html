@@ -24,6 +24,9 @@
                 <div class="col-lg-8">
                     <!-- Title-->
                     <h1 class="mt-4">{{ post.title }}</h1>
+                    <!-- Title 밑 요약 -->
+                    <h5 class="text-muted">{{ post.hook_text }}</h5>
+
                     <!-- Author-->
                     <p class="lead">
                         by
@@ -43,7 +46,7 @@
                     <!-- Post content-->
                     
                     {% if post.file_upload %}
-                        <a href="{{ post.file_upload.url }}" class="btn btn-outline-dark" role="button"download> 
+                        <a href="{{ post.file_upload.url }}" class="btn btn-outline-dark" role="button" download> 
                         Download:
                         {% if post.get_file_ext == 'csv' %}
                             <i class="bi bi-filetype-csv"></i>
@@ -51,6 +54,8 @@
                             <i class="bi bi-file-earmark-excel"></i>
                         {% elif post.get_file_ext == 'docx' or post.get_file_ext == 'doc' %}
                             <i class="bi bi-filetype-docx"></i>
+                        {% elif post.get_file_ext == 'text' or post.get_file_ext == 'txt' %}
+                            <i class="bi bi-filetype-txt"></i>
                         {% else %}
                             <i class="bi bi-file"></i>
                         {% endif %}
