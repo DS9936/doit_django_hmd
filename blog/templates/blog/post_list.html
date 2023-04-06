@@ -36,11 +36,12 @@
         <!-- Page content-->
         <div class="container">
             <div class="row">
-                <!-- Blog entries-->
-                <div class="col-md-8">
+            <!-- Blog entries-->
+            <div class="col-md-8" id="main-area">
                     <h1 class="my-4">
                       Blog
                     </h1>
+                    {% if post_list.exists %}
                     <!-- Blog post-->
                     {% for p in post_list %}
                     <div class="card mb-4">
@@ -62,6 +63,9 @@
                         </div>
                     </div>
                     {% endfor %}
+            {% else %}
+                <h3>아직 게시물이 없습니다</h3>
+            {% endif %}
                     <!--들어갈 내용-->
                     <!-- 작성자 -->
 
