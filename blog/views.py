@@ -26,11 +26,11 @@ class PostList(ListView):
     # template_name = 'blog/post_list.html'
 
     # 'blog/post_list.html' : class 이름_list.html 은 내부적으로 정의가 되어있기때문에 생략 가능
-def get_context_data(self, **kwargs):
-        context = super(PostList,self).get_context_data()
-        context['categories'] = Category.objects.all()
-        context['no_category_post_count'] = Post.objects.filter(category=None).count()
-        return context
+    def get_context_data(self, **kwargs):
+            context = super(PostList,self).get_context_data()
+            context['categories'] = Category.objects.all()
+            context['no_category_post_count'] = Post.objects.filter(category=None).count()
+            return context
 
 def category_page(request, slug):
     if slug == 'no_category' :
