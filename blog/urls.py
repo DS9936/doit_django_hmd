@@ -5,6 +5,7 @@ urlpatterns =[
     #blog
     # 이부분은 차후에 채우겠다.
     #카테고리 페이지
+    path('search/<str:q>/', views.PostSearch.as_view()),
     path('create_post/', views.PostCreate.as_view()),
     path('tag/<str:slug>/', views.tag_page),
     path('<int:pk>/', views.PostDetail.as_view()),
