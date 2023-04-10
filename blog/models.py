@@ -14,6 +14,10 @@ class Category(models.Model):
     def __str__(self):
         return self.name
     
+    #뱃지만들기
+    def get_absolute_url(self):
+        return f'/blog/category/{self.slug}/'
+    
     #카테고리(s)의 이름 지정
     class Meta:
         verbose_name_plural = 'Categories'
