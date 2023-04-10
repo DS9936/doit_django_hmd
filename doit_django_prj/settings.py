@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'blog',
     'single_pages',
     'django_summernote',
+    'crispy_forms',
 
     #all-auth lib 설정
     'django.contrib.sites',
@@ -138,6 +139,9 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'_media')
 
+#Crispy
+CRISPY_TEMPLATE_PACK = 'bootsrap4'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
@@ -156,6 +160,10 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 SITE_ID = 1
+
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+LOGIN_REDIRECT_URL = '/blog/'
 
 # # Provider specific settings
 # SOCIALACCOUNT_PROVIDERS = {

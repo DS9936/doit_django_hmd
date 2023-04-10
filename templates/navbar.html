@@ -1,3 +1,5 @@
+{% load socialaccount %}
+
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container">
@@ -18,7 +20,16 @@
         <li class="nav-item"><a class="nav-link" href="#">ABOUTME</a></li>
       </ul>
       <ul class="navbar-nav ml-auto">
+        {% if user.is_authenticated %}
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ user.username }}</a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="/accounts/logout/">Log OUT</a>
+          </div>
+        </li>
+        {% else %}
         <li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#exampleModal"><i class="bi bi-box-arrow-in-right"></i>Login</a></li>
+        {% endif %}      
       </ul>
     </div>
   </div>
@@ -35,7 +46,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <a href="" class="btn btn-outline-secondary col-12" role="button"><i class="bi bi-google"></i>Login with GOOGLE</a>
+        <a href="{% provider_login_url 'google' %}" class="btn btn-outline-secondary col-12" role="button"><i class="bi bi-google"></i>Login with GOOGLE</a>
         <hr>
         <a href="" class="btn btn-outline-secondary col-12" role="button"><i class="bi bi-envelope"></i>SIGN UP with E-mail</a>
         <hr>
