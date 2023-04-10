@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post, Category
+from .models import Post, Category, Tag
 # from django_summernote.admin import SummernoteModelAdmin
 # from .models import SomeModel
 # from django_summernote.admin import SummernoteModelAdmin
@@ -22,5 +22,10 @@ from .models import Post, Category
 class CategoryAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug':('name',)}
 
+# tag 모델
+class TagAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'slug':('name',)}
+
 admin.site.register(Category,CategoryAdmin)
+admin.site.register(Tag, TagAdmin)
 

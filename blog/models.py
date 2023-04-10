@@ -5,6 +5,18 @@ import os
 
 # Create your models here.
 
+class Tag(models.Model):
+    name = models.CharField(max_length=50, unique=True)
+    slug = models.SlugField(max_length=200, unique=True, allow_unicode = True)
+
+    #카테고리 추가
+    def __str__(self):
+        return self.name
+    
+    #뱃지만들기
+    def get_absolute_url(self):
+        return f'/blog/tag/{self.slug}/'
+
 #카테고리 추가
 class Category(models.Model):
     name = models.CharField(max_length=50, unique=True)
@@ -19,9 +31,10 @@ class Category(models.Model):
         return f'/blog/category/{self.slug}/'
     
     #카테고리(s)의 이름 지정
-    class Meta:
-        verbose_name_plural = 'Categories'
+    # class Meta:
+    #     verbose_name_plural = 'Categories'
 
+    
 
 class Post(models.Model):
     title = models.CharField(max_length=30)
@@ -39,6 +52,8 @@ class Post(models.Model):
     author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
     # 카테고리 필드
     category = models.ForeignKey(Category, null=True, blank=True, on_delete=models.SET_NULL)
+    # tag 필드
+    tags = models.ManyToManyField(Tag, blank=True)
 
 
     def __str__(self):

@@ -30,6 +30,16 @@
                 <h5 class="text-muted">{{ p.hook_text }}</h5>
                 {% endif %}
                 <p class="card-text">{{ p.content|truncatechars:100 }}</p>
+                {% if p.tags.exists %}
+                <i class="bi bi-tags-fill"></i>
+                <!-- post를 리스트로 템플릿에 넘겨받았을 때, ManytoMany 관계의 컬럼의 데이터 랜더링 방법 -->
+                {% for tag in p.tags.iterator %}
+                <a href="{{ tag.get_absolute_url }}"><span class="badge badge-pill badge-light">{{ tag }}</span></a>
+                
+                {% endfor %}
+                <br />
+                <br />
+                {% endif %}
                 <a class="btn btn-primary" href="{{ p.get_absolute_url }}">더 보기 →</a>
             </div>
             <div class="card-footer text-muted">
