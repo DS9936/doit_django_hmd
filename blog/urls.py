@@ -14,7 +14,10 @@ urlpatterns =[
 
     # post_detail.html 에서 action="{{ post.get_absolute_url }}new_comment/"> 와 마찬가지로
     path('<int:pk>new_comment/', views.new_comment),
-    
+
+    # 댓글수정 path
+    path('update_comment/<int:pk>/', views.CommentUpdate.as_view()),
+
     path('<int:pk>/', views.PostDetail.as_view()),
     path('', views. PostList.as_view()),
     # path('', views.index),
