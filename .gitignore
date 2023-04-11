@@ -133,4 +133,3 @@ doit_venv/
 # Pycham
 .idea/
 migrations/
-_media/
