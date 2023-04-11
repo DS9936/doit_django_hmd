@@ -11,7 +11,7 @@ from .models import Post,Category,Tag
 
 
 
-
+# 포스트크리에잇
 class PostCreate(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     model = Post
     fields = ['title','hook_text','content','head_image','file_upload','category']
@@ -27,10 +27,13 @@ class PostCreate(LoginRequiredMixin, UserPassesTestMixin, CreateView):
         else:
             return redirect('/blog/')
 
+# 포스트리스트
 class PostList(ListView):
     model = Post
     ordering = '-pk'
-    # template_name = 'blog/post_list.html'
+    
+    # 한 page에 보여줄 목록 갯수 = paginate_by
+    paginate_by = 3
 
     # 'blog/post_list.html' : class 이름_list.html 은 내부적으로 정의가 되어있기때문에 생략 가능
     def get_context_data(self, **kwargs):
@@ -47,8 +50,6 @@ def category_page(request, slug):
         category = Category.objects.get(slug=slug)
         post_list = Post.objects.filter(category=category)
 
-    # category = Category.objects.get(slug=slug)
-
     return render(
         request,
         'blog/post_list.html',
@@ -60,6 +61,7 @@ def category_page(request, slug):
         }
     )
 
+# 포스트 서치
 class PostSearch(PostList):
     paginate_by = None
 
@@ -77,8 +79,6 @@ class PostSearch(PostList):
 
         return context
 
-
-
 def tag_page(request, slug):
     tag = Tag.objects.get(slug=slug)
     post_list = tag.post_set.all()
@@ -95,6 +95,7 @@ def tag_page(request, slug):
     )
 
 
+# 내부페이지
 class PostDetail(DetailView):
     model = Post
     # template_name = 'blog/post_detail.html'
