@@ -5,6 +5,13 @@ from django.db.models import Q
 from .models import Post,Category,Tag
 from django.core.exceptions import PermissionDenied
 
+#comment 폼
+from .forms import CommentForm
+
+#new_commnet 경로지정
+from django.shortcuts import get_object_or_404
+
+
 # tag 를 가져온다
 from django.utils.text import slugify
 
@@ -129,7 +136,6 @@ class PostUpdate(LoginRequiredMixin, UpdateView):
         else :
             raise PermissionDenied
 
-
 # 내부페이지
 class PostDetail(DetailView):
     model = Post
@@ -139,6 +145,7 @@ class PostDetail(DetailView):
         context = super(PostDetail,self).get_context_data()
         context['categories'] = Category.objects.all()
         context['no_category_post_count'] = Post.objects.filter(category=None).count()
+        context['comment_form'] = CommentForm
         return context
 
     
@@ -157,3 +164,23 @@ def single_post_page(request,pk):
 
 
 
+
+
+# new_comment
+def new_comment(request, pk):
+    if request.user.is_authenticated:
+        post = get_object_or_404(Post,pk=pk)
+
+        if request.method == 'POST':
+            comment_form = CommentForm(request.POST)
+            if comment_form.is_valid():
+                comment = comment_form.save(commit=False)
+                comment.post = post
+                comment.author = request.user
+                comment.save()
+                return redirect(comment.get_absolute_url())
+            
+            else:
+                return redirect(post.get_absolute_url())
+    else:
+        raise PermissionDenied
