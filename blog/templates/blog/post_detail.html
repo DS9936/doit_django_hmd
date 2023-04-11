@@ -11,6 +11,8 @@
             {% else %}
             <span class="badge badge-secondary float-right">미분류</span>
             {% endif %}
+
+
         <!-- Title-->
         <h1 class="mt-4">{{ post.title }}</h1>
         <!-- Title 밑 요약 -->
@@ -22,6 +24,20 @@
             <a href="#">{{ post.author | upper }}</a>
         </p>
         <hr />
+
+        <!-- detail 페이지에서 수정버튼만들기 -->
+        {% if user.is_authenticated and user == post.author %}
+
+            <a class="btn btn-info btn-sm float-right" href="/blog/update_post/{{ post.pk }}/" role="button">
+                <i class="fas fa-pen"></i>
+                Edit Post
+            </a>
+        
+        {% endif %}
+
+
+
+
         <!-- Date and time-->
         <p>{{ post.created_at }}</p>
         <hr />
