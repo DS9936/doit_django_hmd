@@ -18,6 +18,9 @@ urlpatterns =[
     # 댓글수정 path
     path('update_comment/<int:pk>/', views.CommentUpdate.as_view()),
 
+    # 댓글삭제 path
+    path('delete_comment/<int:pk>/',views.delete_comment),
+
     path('<int:pk>/', views.PostDetail.as_view()),
     path('', views. PostList.as_view()),
     # path('', views.index),
