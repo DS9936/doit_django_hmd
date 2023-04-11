@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post, Category, Tag
+from .models import Post, Category, Tag, Comment
 from django_summernote.admin import SummernoteModelAdmin
 from .models import Post
 
@@ -23,4 +23,7 @@ class TagAdmin(admin.ModelAdmin):
 
 admin.site.register(Category,CategoryAdmin)
 admin.site.register(Tag, TagAdmin)
+
+# comment 모델
+admin.site.register(Comment)
 
