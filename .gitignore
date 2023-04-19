@@ -132,3 +132,4 @@ doit_venv/
 # Pycham
 .idea/
 migrations/
+datas/

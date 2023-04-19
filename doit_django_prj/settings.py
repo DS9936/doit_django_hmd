@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google', 
     # kakao e-mail
     # 'allauth.socialaccount.providers.kakao',
+    'ramen_sales',
 
 ]
 
